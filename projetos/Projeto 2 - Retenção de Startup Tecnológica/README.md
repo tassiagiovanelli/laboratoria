@@ -55,3 +55,10 @@ Seu objetivo é ajudar a CEO da startup a determinar se o investimento recebido 
 - **Entender o conceito de Product Market Fit**: entender quando um produto ou serviço atingiu o PMF. Entender seu propósito e as repercussões de medir e monitorar essa métrica para o negócio. Conhecer as diferentes maneiras que existem para medi-lo.
 - **Fazer uma análise por coorte**: organizar as informações para formar coortes de clientes de acordo com a data de entrada no produto/serviço. Realizar cálculos e formatar as informações para encontrar mapas de calor. Identificar pontos de fuga.
 - **Tomar decisões de negócios com base em dados**: resumir e organizar os dados de forma a encontrar informações importantes para apoiar uma decisão de negócios. Entender os prós e os contras de tal decisão e operar dentro de uma certa margem de erro.
+
+# Links
+- [Instruções](https://www.kaggle.com/datasets/datacertlaboratoria/projeto-2-reteno-de-startup-tecnolgica)
+- [Guia passo a passo](https://www.kaggle.com/code/datacertlaboratoria/guia-de-resolu-o-projeto-2)
+
+## Trilha de Aprendizagem (cursos)
+
