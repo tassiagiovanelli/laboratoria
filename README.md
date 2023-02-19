@@ -8,6 +8,5 @@ O curso de Análise de Dados ensina várias ferramentas importantes pro mercado,
 
 O programa teve duração de 16 semanas, com 15hrs semanais (8hrs síncronas e 7hrs assíncronas). Os encontros e os cursos aconteceram no formato online.
 
-# Projetos
+Cada um dos projetos realizados pode ser encontrados [aqui](https://github.com/tassiagiovanelli/laboratoria/tree/main/projetos) :) 
 
-# Trilha de aprendizagem 
