@@ -67,11 +67,11 @@ Todos os dados vazios ou nulos foram deletados.
 
 O que não deveria acontecer neste caso é termos a mesma fatura duas vezes. Como se supõe que cada fatura tenha um número único, então, se encontrarmos outra linha com o mesmo número de fatura, devemos apagar o que está duplicado.
 
-Para remover dados duplicados, você pode usar a função Remover cópias (Dados > Limpeza de dados > Remover cópias). Temos que dizer a essa ferramenta quais colunas queremos comparar entre as linhas. Como vimos anteriormente, queremos remover as linhas que compartilham valores na coluna de número da fatura.
+Vamos remover dados duplicados, ou seja, as linhas que compartilham valores na coluna de número da fatura (Dados > Limpeza de dados > Remover cópias).
 
 ### 1.3 Detecção e eliminação de quantidades negativas
 Os valores negativos não são necessariamente incorretos. As faturas que começam com a letra C correspondem a devoluções e, portanto, podemos assumir que a isso se devem os valores negativos (a venda é positiva, a devolução é negativa).
-Como só queremos analisar as vendas do negócio (e não as devoluções), devemos remover esses valores do nosso conjunto de dados. Para isso, você pode usar filtros, em particular a opção "Filtrar por condição", e depois remover as linhas com valores negativos.
+Como só queremos analisar as vendas do negócio (e não as devoluções), devemos remover esses valores do nosso conjunto de dados. 
 
 ## 2. Análise das métricas de vendas
 ### 2.1 Análise do número de faturas por país
@@ -138,7 +138,7 @@ Uma vez calculadas as variáveis de Recência, Frequência e Valor Monetário pa
 
 >É importante notar que essa análise pode ser feita por quartis, assim como por quintis, terços, percentis ou qualquer divisão que a analista de dados prefira. Quanto mais divisões, mais fina é a análise.
 
-![Análise RFM - Exemplo](./images.TD_RFM.png)
+![Análise RFM - Exemplo](./images/TD_RFM.png)
 
 # Resultado final
 - [Dashboard no Looker](https://lookerstudio.google.com/reporting/b2dd0a27-9550-40ea-aaca-8b90ffdeeb77/page/KG3tC?s=n5NXtjrVdio)
