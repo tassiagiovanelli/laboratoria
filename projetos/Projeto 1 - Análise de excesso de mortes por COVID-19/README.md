@@ -52,17 +52,67 @@ Cada linha contém o acumulado por semana ou mês do número total de mortes e o
 Para iniciar o projeto, crie uma nova planilha com sua conta do Google e importe o banco de dados usando a função IMPORTRANGE. <br>
 `IMPORTRANGE(url_da_planilha; string_do_intervalo)`
 
-## 4. Análise
+## 4. Resolução
 ### 4.1 Cálculo do número total de mortes por COVID por 100.000 habitantes
 O número de mortes é normalmente expresso como "o número de mortes por 1.000, 10.000, 100.000 ou um milhão de habitantes", com o propósito de fazer comparações objetivas com cidades ou países que têm diferentes números de habitantes. Em nosso caso, multiplicaremos as mortes por 100.000 e dividiremos o resultado pela população total. <br>
 ![Cálculo mortes de COVID por 100.000 Habitantes](./images/calculo_mortes_covid_100hab.png) <br>
 
-Para realizar o cálculo de cada país, é necessário filtrar o dataset pela função QUERY. <br>
+Antes de realizar o cálculo de cada país, é necessário filtrar o dataset pela função `QUERY`. <br>
 `QUERY(dados; consulta; [cabecalhos])` <br>
-Exemplo aplicado: <br>
+Exemplo aplicado no Peru: <br>
 `=QUERY(DADOS!A:G; "SELECT A, B, C, E, F, G WHERE A='Peru' AND B>= date '2020-03-02'")`
 
-Depois de carregar os dados, crie uma nova coluna para o cálculo das mortes por COVID por 100.000 habitantes e aplique a fórmula explicada acima. Para identificar o valor de habitantes de cada país, utilize a função PROCV / VLOOKUP do Planilhas Google para a tabela com o total de habitantes por país no dataset ("Poblacion").
+Depois de carregar os dados de cada país, crie uma nova coluna para o cálculo das mortes por COVID por 100.000 habitantes e aplique a fórmula explicada acima. Para identificar o valor de habitantes do país, utilize a função `PROCV / VLOOKUP` do Planilhas Google para a tabela no dataset ("Poblacion").
+Os resultados dos cálculos são: <br>
+![Resultado cálculo de mortes de COVID em 100.000 Habitantes](./images/resultado_mortes_covid_100hab.png) <br>
 
+### 4.2 Cálculo do total acumulado de mortes por COVID por 100.000 habitantes
+O próximo passo é saber o número acumulado de óbitos por data, muito semelhante aos resultados anteriores, com a diferença de que adicionaremos o número de óbitos acumulados do dia anterior com o dia atual. 
 
+### 4.3 Cálculo do prognóstico de mortes usando médias simples 
+Como comentado no início do projeto, o objetivo é fazer uma comparação das mortes notificadas por COVID-19 (cálculos já realizados acima) versus o excesso de mortes. Este último termo é o que explicaremos a seguir:
+>O excesso de mortes será calculado como a diferença entre e total de mortes notificadas menos o prognóstico de mortes.
+
+**Prognóstico de mortes**: para calcular a previsão para um determinado período de tempo, utilizaremos o cálculo de médias simples.
+
+Use a função `MÉDIA.SE.S./AVERAGEIFS` para calcular a previsão de mortes nas Planilhas do Google.
+Exemplo aplicado:
+`=IFERROR(AVERAGEIFS(DADOS!F:F;DADOS!A:A;"=Peru";DADOS!G:G;"=0";DADOS!E:E;D2);I1)`
+
+### 4.4 Cálculo do excesso de mortes por COVID
+A próxima etapa é calcular o excesso de mortes. Basta subtrairmos o número total de mortes notificadas menos o prognóstico de mortes.
+
+### 4.5 Cálculo do excesso de mortes por COVID por 100.000 habitantes
+Para fazer comparações, vamos converter os números de mortes para valores por 100.000 habitantes, muito semelhante ao que desenvolvemos na Etapa 4.1. Crie uma coluna "Excesso de mortes por COVID por 100.000 habitantes" e aplique a fórmula aprendida nas etapas anteriores.
+
+### 4.6 Cálculo do excesso de mortes por COVID por 100.000 habitantes acumuladas
+Muito semelhante ao que desenvolvemos na Etapa 4.2, vamos calcular o excesso de mortes acumuladas por 100.000 habitantes para fazer uma comparação com os números oficiais de mortes acumuladas. Crie uma coluna "Excesso de mortes acumuladas por COVID por 100.000 habitantes" e aplique a fórmula aprendida nas etapas anteriores. 
+A imagem a seguir mostra os resultados da nova coluna. <br>
+![Exemplo dataset](./images/exemplo_dataset_final.png)
+
+## 5. Entrega final
+- Uma tabela comparativa com o total de mortes por COVID-19 notificadas por 100 mil habitantes, o total de “mortes em excesso” por 100 mil habitantes e a diferença entre os dois valores, por país:
+
+![Cálculos finais](./images/calculos_finais.png)
+
+- Um gráfico mostrando os dados da tabela acima como um gráfico de barras: 
+
+![Gráfico da tabela](./images/grafico_tabela.png)
+
+- Um gráfico para cada país que mostra a comparação da evolução ao longo do tempo das mortes notificados por COVID-19 versus o cálculo do "excesso de mortes" semana a semana, ambos dados por 100 mil habitantes:
+
+![Gráficos da evolução](./images/graficos_evolucao.png)
+
+- Um gráfico para cada país que mostra as mesmas variáveis do ponto anterior, mas acumuladas ao longo do tempo:
+
+![Gráficos do acumulado](./images/graficos_acumulado.png)
+
+- Considerando os valores por 100.000 habitantes, em que país há a maior diferença entre os óbitos oficiais de COVID notificados e os excedentes estimados de óbitos? México. 
+- Considerando os valores por 100.000 habitantes, em que país existe a menor diferença entre os óbitos oficiais por COVID notificados e os excedentes estimados de óbitos? Chile.
+- Considerando os valores por 100.000 habitantes, qual é o país com o maior número de óbitos excedentes? Perú.
+
+# Objetivos de Aprendizado
+- Usar gráficos básicos para resumir as informações.
+- Estratégias para aprender e desenvolver habilidades de forma independente.
+- A classificar dados e extrair informações usando planilhas.
 
