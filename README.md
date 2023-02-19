@@ -1,5 +1,5 @@
 # [Certificação em Análise de Dados | Laboratoria + IBM](https://www.laboratoria.la/br/certificacao-analise-de-dados)
-Esse repositório contém os projetos realizados durante a certificação de Analista de Dados.
+Esse repositório contém os projetos realizados durante a [certificação de Analista de Dados](https://www.credly.com/badges/346df6ad-7cea-4899-b936-563f734ba0bc/public_url).
 
 # Sobre o programa
 A Certificação em Análise de Dados foi a primeira edição do programa cocriado pela [IBM](https://www.linkedin.com/company/ibm/) e pela [Laboratoria](https://www.linkedin.com/school/laboratoria/). A sua premissa é formar analistas para o mercado de trabalho a partir da experiência - os projetos são inspirados em casos de negócios reais criados por profissionais do setor. 
