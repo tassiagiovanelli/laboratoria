@@ -6,7 +6,7 @@ A Certificação em Análise de Dados foi a primeira edição do programa cocria
 
 O curso de Análise de Dados ensina várias ferramentas importantes pro mercado, como: **ETL**, utilizada para coletar, limpar e organizar dados; **Estatística**, que é a base pra interpretar dados; **Visualização de Dados**, que fornecem a interpretação dos dados e orientação para as decisões de negócio; e **Metodologia Ágil**, que torna os processos mais eficientes e flexíveis. Com isso, o analista de dados aprende a gerenciar dados, analisá-los e fornecer insights para a tomada de decisão. Os princípios do modelo são a apropriação da aprendizagem, aprendizagem colaborativa e aprender fazendo.
 
-O programa teve duração de 16 semanas, com 15hrs semanais (8hrs síncronas e 7hrs assíncronas). Os encontros e os cursos aconteceram no formato online.
+O programa teve duração de 16 semanas, com 15h semanais (8h síncronas e 7h assíncronas). Os encontros e os cursos aconteceram no formato online.
 
-Cada um dos projetos realizados pode ser encontrados [aqui](https://github.com/tassiagiovanelli/laboratoria/tree/main/projetos) :) 
+Cada um dos projetos realizados pode ser encontrado [aqui](https://github.com/tassiagiovanelli/laboratoria/tree/main/projetos) :) 
 
