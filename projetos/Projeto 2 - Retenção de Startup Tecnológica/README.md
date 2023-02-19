@@ -40,15 +40,15 @@ Com isso, ela se virou para olhar para seu chefe, o Gerente de Produto:
 
 Ao sair da reunião, seu chefe pede que você aceite esse desafio porque pode ser uma boa experiência de aprendizado para você. 
 
-Neste projeto, você fará o pa# você precisará descobrir se o produto oferecido alcançou o Product-Market Fit através de uma análise de retenção de coorte mensal e trimestral dos clientes nos anos 2019 e 2020. 
+Neste projeto, você precisará descobrir se o produto oferecido alcançou o Product-Market Fit através de uma análise de retenção de coorte mensal e trimestral dos clientes nos anos 2019 e 2020. 
 
 **Cohort**: (coorte) é o termo técnico usado para um grupo de indivíduos que compartilham uma determinada característica adquirida ao mesmo tempo.
 
 # Resolução
 ## 1. Importar e revisar o conjunto de dados
-Importar o [dataset]() no Google Sheets.
+Importar o dataset no Google Sheets.
 
-![imagem_dataset](/.images/imagem_dataset.png)
+![imagem_dataset](./images/imagem_dataset.png)
 
 O conjunto de dados possui 330 linhas, sendo que cada linha representa um cliente único.
 
@@ -75,18 +75,18 @@ Agora, se queremos saber o número total de clientes que continuam pagando a ass
 ## 3. Resumir o total de clientes por mês
 Em nossa planilha do Google, precisamos replicar uma estrutura semelhante a uma análise de coorte, ou seja, agrupar os clientes de acordo com um critério. Para isso, vamos criar uma tabela dinâmica cujas linhas são as datas do mês de registro, e em cada linha o valor é o número de clientes que entraram naquela data
 
-![Tabela exemplo](/.images/tabela_mes_registro.png)
+![Tabela exemplo](./images/tabela_mes_registro.png)
 No resultado do agrupamento, podemos ver o número de clientes registrados por mês: 11 clientes se registraram no mês de janeiro de 2019 (1/2019), 13 clientes em fevereiro de 2019 (2/2019) e assim por diante, com um total de 330 clientes. 
 
 ## 4. Obter o número de clientes por mês
 Em seguida, queremos adicionar colunas à tabela dinâmica para contar o número de clientes que ainda pagam pelo serviço em cada mês. Por exemplo, a primeira coluna que queremos acrescentar é 1/2019, pois gostaríamos de saber para cada linha quantos clientes pagaram naquele mês. A próxima coluna deve ser 2/2019 e assim por diante até completar 24 colunas (e chegar a 12/2020).
 Em uma tabela dinâmica podemos adicionar colunas à medida que adicionamos mais valores.
 
-![Tabela dinâmica](/.images/tabela_dinamica.png)
+![Tabela dinâmica](./images/tabela_dinamica.png)
 
 ⚠️ Neste caso, queremos que a tabela dinâmica totalize os valores dos clientes que atendem a esse critério. Portanto, resumimos as informações (summarize by) por SUM e não COUNTA como no caso da primeira coluna, onde queríamos contar o número de clientes em cada data.
 
-"[Resultado Final](/.images/resultado_tabela_final.png)
+![Resultado Final](./images/resultado_tabela_dinamica.png)
 
 Olhando os dados, podemos começar a compreendê-los com os seguintes exemplos:
 
@@ -100,22 +100,22 @@ A fim de comparar os coortes, nos interessa conhecer o comportamento dos cliente
 
 Se quisermos comparar 🍎 com 🍎 e 🍐 com 🍐, temos que alinhar o primeiro mês de cada coorte. Em termos gráficos, temos que partir da tabela atual:
 
-![Tabela exemplificando cohort](/.images/tabela_explicacao_cohort.png)
+![Tabela exemplificando cohort](./images/tabela_explicacao_cohort.png)
 
 Onde cada início de coorte segue seu mês de registro (podemos ver isso a partir dos nomes dos títulos das colunas), para uma tabela onde o início de cada coorte está na primeira coluna e os títulos não são as datas, mas o mês com o número correspondente. Algo assim:
 
-![Tabela exemplificando resultado cohort](/.images/tabela_explicacao_cohort2.png)
+![Tabela exemplificando resultado cohort](./images/tabela_explicacao_cohort2.png)
 
 ### 5.1 Alinhamento dos dados
 Para chegar na visualização ilustrada anteriormentes, precisamos mover cada linha para o iníco da tabela. A duas possibilidades para isso: usar uma fórmula que combina `PROCV`, `LINS` e `COLS` ou `QUERY`.
 
 **Opção 1:** `=QUERY(INTERVALO_ONDE_ESTÃO_OS_DADOS,"SELECT * LIMIT 1")`
 
-![Exemplo resolução por QUERY](/.images/exemplo_query.png)
+![Exemplo resolução por QUERY](./images/exemplo_query.png)
 
 **Opção 2:** `=IFERROR(VLOOKUP($A2;qnt_novos_usuarios_mes!$A$1:$Z$25;ROWS(qnt_novos_usuarios_mes!$A$1:$A2)+COLUMNS(qnt_novos_usuarios_mes!$C$1:D2)-1;0);"")`
 
-![Exemplo resolução por PROCV](/.images/exemplo_procv.png)
+![Exemplo resolução por PROCV](./images/exemplo_procv.png)
 
 ## 6. Calcular porcentagens e formatar
 De qualquer forma, você conseguiu chegar a uma tabela que mostra quantos clientes estavam pagando em cada mês para cada coorte (ou data de inscrição).
@@ -128,7 +128,7 @@ Para visualizar melhor a tabela e chegar mais rápido aos insights, inclua uma e
 
 Escolha “Escala de Cores” e selecione as cores vermelha, verde e amarela, bem como as porcentagens 0, 50 e 100 como mostrado na imagem.
 
-![Imagem do resultado com escala de cor](/.images/escala_cores.png)
+![Imagem do resultado com escala de cor](./images/escala_cores.png)
 
 ### Análises
 - É comum ver uma tendência (seta vertical) mostrando que as coortes mais jovens (por exemplo, 3/2020 ou 4/2020) estão melhores do que as coortes mais antigas (1/2019). Quanto mais jovem uma coorte, mais se espera que os clientes sejam retidos, porque isso significaria que o produto vem melhorando com o tempo e, portanto, os clientes estão voltando a consumi-lo. Este caso de negócio não está de acordo com isso.
@@ -138,13 +138,13 @@ Escolha “Escala de Cores” e selecione as cores vermelha, verde e amarela, be
 - O ponto mais crítico foi no mês 20 e 21, com 51%. 
 
 # Resultado final
-![Resultado Final](/.images/resultado_final1.png)
+![Resultado Final](./images/resultado_final1.PNG)
 
-![Resultado Final](/.images/resultado_final2.png)
+![Resultado Final](./images/resultado_final2.PNG)
 
-![Resultado Final](/.images/resultado_final3.png)
+![Resultado Final](./images/resultado_final3.PNG)
 
-![Resultado Final](/.images/resultado_final4.png)
+![Resultado Final](./images/resultado_final4.PNG)
 
 # Objetivos da aprendizagem
 - **Organizar dados em planilhas**: conhecer os diferentes tipos de dados que uma célula aceita e conseguir formatar moedas, datas, números para melhor visualizar as informações. Além disso, usar filtros para organizar os dados e poder ordenar as colunas do maior para o menor (ou vice-versa) de acordo com o tipo de dados.
