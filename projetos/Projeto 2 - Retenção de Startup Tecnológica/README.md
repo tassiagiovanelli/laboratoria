@@ -1,6 +1,8 @@
 # Análise da Retenção de Startup Tecnológica
 # Introdução
-Esse foi o segundo projeto da Certificação de Análise de Dados.
+Esse foi o segundo projeto da Certificação de Análise de Dados da IBM/Laboratoria.
+- Google Sheets, cohort, análise de churn, Product-Market-Fit. 
+- Cursos importantes para conslusão do projeto: [Google Sheets - The Comprehensive Masterclass](https://www.udemy.com/certificate/UC-4c35090b-4cff-4731-9a93-1d3e29898c4d/)
 
 ## Briefing
 Neste projeto, você realizará uma análise com base em um conjunto de dados sobre os clientes que usam um software de gestão de despesas na nuvem. Para responder às perguntas de negócios que surgirem, você precisará entender a estrutura dos dados, analisá-los e entender as métricas de negócios que permitirão comunicar suas descobertas e apoiar a tomada de decisões.
@@ -38,15 +40,111 @@ Com isso, ela se virou para olhar para seu chefe, o Gerente de Produto:
 
 Ao sair da reunião, seu chefe pede que você aceite esse desafio porque pode ser uma boa experiência de aprendizado para você. 
 
-Neste projeto, você fará o papel de analista de dados júnior de uma startup de Software as a Service (SaaS), cujo produto é um software de gestão de despesas que os clientes podem acessar via web por uma assinatura mensal por usuário.
-Seu objetivo é ajudar a CEO da startup a determinar se o investimento recebido será usado para "melhorar o produto" ou para "expandir, conquistando mais clientes". Para atingir seu objetivo, você precisará descobrir se o produto oferecido alcançou o Product-Market Fit através de uma análise de retenção de coorte. 
+Neste projeto, você fará o pa# você precisará descobrir se o produto oferecido alcançou o Product-Market Fit através de uma análise de retenção de coorte mensal e trimestral dos clientes nos anos 2019 e 2020. 
 
 **Cohort**: (coorte) é o termo técnico usado para um grupo de indivíduos que compartilham uma determinada característica adquirida ao mesmo tempo.
 
 # Resolução
+## 1. Importar e revisar o conjunto de dados
+Importar o [dataset]() no Google Sheets.
 
+![imagem_dataset](/.images/imagem_dataset.png)
 
-# Conclusão
+O conjunto de dados possui 330 linhas, sendo que cada linha representa um cliente único.
+
+As colunas que armazena são:
+- **Cliente**: Nome do cliente
+- **Status do Cliente**: Pode ser "Ativo" (continua pagando a assinatura) ou "Churned" (não está mais pagando)
+- **Mês de registro**: Mês em que começou a pagar a assinatura mensal
+- **Mês de cancelamento**: Mês em que deixou de pagar a assinatura mensal
+24 colunas, uma para cada mês do ano (de 1/2019 a 12/2020), que mostram se o cliente pagou (com o número 1) ou não (com uma célula vazia)
+
+## 2. Entender a estrutura dos dados
+Se você olhar atentamente para as primeiras linhas de seus dados, poderá começar a entender o que está acontecendo com cada cliente. Por exemplo:
+
+O primeiro cliente é George García. Observamos que seu mês de registro é janeiro de 2019 (1/2019) e seu mês de cancelamento está em branco, o que significa que esse cliente está ativo e continua pagando a assinatura mensal. Isso pode ser confirmado porque todas as colunas relacionadas às datas de pagamento (de 1/2019 a 12/2020) se encontram preenchidas com o valor de 1, o que significa que ele tem pago a assinatura mensal por 24 meses seguidos.
+
+O segundo cliente, James Johnson, também se inscreveu em janeiro de 2019, mas seu estado é churned (cancelamento), já que apenas as colunas 1/2019 e 2/2019 estão preenchidas, o que quer dizer que ele pagou somente dois meses de assinatura (janeiro e fevereiro), portanto seu mês de cancelamento seria março de 2019.
+
+O último cliente da imagem, Daniel White, se inscreveu em fevereiro de 2019, mas conforme vemos no conjunto de dados só pagou por 4 meses (de 2/2019 a 5/2019), o que quer dizer que cancelou o serviço em maio do mesmo ano, portanto seu estado é churned.
+
+Dos 3 clientes analisados, apenas um cliente continua pagando a assinatura mensal, ou seja, dos 3 clientes, retivemos apenas um e os outros dois cancelaram o serviço.
+
+Agora, se queremos saber o número total de clientes que continuam pagando a assinatura ou deixaram de pagar, vamos agrupá-los por mês de registro.
+
+## 3. Resumir o total de clientes por mês
+Em nossa planilha do Google, precisamos replicar uma estrutura semelhante a uma análise de coorte, ou seja, agrupar os clientes de acordo com um critério. Para isso, vamos criar uma tabela dinâmica cujas linhas são as datas do mês de registro, e em cada linha o valor é o número de clientes que entraram naquela data
+
+![Tabela exemplo](/.images/tabela_mes_registro.png)
+No resultado do agrupamento, podemos ver o número de clientes registrados por mês: 11 clientes se registraram no mês de janeiro de 2019 (1/2019), 13 clientes em fevereiro de 2019 (2/2019) e assim por diante, com um total de 330 clientes. 
+
+## 4. Obter o número de clientes por mês
+Em seguida, queremos adicionar colunas à tabela dinâmica para contar o número de clientes que ainda pagam pelo serviço em cada mês. Por exemplo, a primeira coluna que queremos acrescentar é 1/2019, pois gostaríamos de saber para cada linha quantos clientes pagaram naquele mês. A próxima coluna deve ser 2/2019 e assim por diante até completar 24 colunas (e chegar a 12/2020).
+Em uma tabela dinâmica podemos adicionar colunas à medida que adicionamos mais valores.
+
+![Tabela dinâmica](/.images/tabela_dinamica.png)
+
+⚠️ Neste caso, queremos que a tabela dinâmica totalize os valores dos clientes que atendem a esse critério. Portanto, resumimos as informações (summarize by) por SUM e não COUNTA como no caso da primeira coluna, onde queríamos contar o número de clientes em cada data.
+
+"[Resultado Final](/.images/resultado_tabela_final.png)
+
+Olhando os dados, podemos começar a compreendê-los com os seguintes exemplos:
+
+- Na coluna “Novos Clientes”, há **13** clientes registrados em março de 2019 (3/2019)
+- Desses **13** clientes (coorte março 2019), **11** continuam pagando em outubro 2019 (10/2019). E desses **13** clientes (coorte março 2019), apenas **4** continuaram pagando até dezembro de 2020 (12/2020)
+- Nos totais na parte inferior, vemos que ao final de dezembro de 2019, tínhamos um total de 112 clientes pagantes.
+- Você vai notar que, com o passar dos meses, o número de clientes diminui. Isto é muitas vezes inevitável, mas você quer que os números ao longo da linha horizontal diminuam o mais lentamente possível à medida que o tempo passa.
+
+## 5. Organizar os dados
+A fim de comparar os coortes, nos interessa conhecer o comportamento dos clientes ao longo dos meses desde que eles se inscreveram. Não nos interessa a data em particular. Em outras palavras, **nos interessa saber o que aconteceu com os clientes de cada coorte em um mês específico desde sua inscrição**. Por exemplo, se quiséssemos ver o que aconteceu com nossos clientes 5 meses após sua inscrição, tal mês seria diferente para cada coorte. Para o primeiro coorte (1/2019), o mês 5 corresponde a 5/2019, para o segundo (2/2019), 6/2019, para o terceiro (3/2019) seu quinto mês é 7/2019. Para a coorte na linha 10 (9/2019), seu 5º mês é 1/2020. Assim, cada coorte é "deslocada" um mês em relação à sua coorte anterior.
+
+Se quisermos comparar 🍎 com 🍎 e 🍐 com 🍐, temos que alinhar o primeiro mês de cada coorte. Em termos gráficos, temos que partir da tabela atual:
+
+![Tabela exemplificando cohort](/.images/tabela_explicacao_cohort.png)
+
+Onde cada início de coorte segue seu mês de registro (podemos ver isso a partir dos nomes dos títulos das colunas), para uma tabela onde o início de cada coorte está na primeira coluna e os títulos não são as datas, mas o mês com o número correspondente. Algo assim:
+
+![Tabela exemplificando resultado cohort](/.images/tabela_explicacao_cohort2.png)
+
+### 5.1 Alinhamento dos dados
+Para chegar na visualização ilustrada anteriormentes, precisamos mover cada linha para o iníco da tabela. A duas possibilidades para isso: usar uma fórmula que combina `PROCV`, `LINS` e `COLS` ou `QUERY`.
+
+**Opção 1:** `=QUERY(INTERVALO_ONDE_ESTÃO_OS_DADOS,"SELECT * LIMIT 1")`
+
+![Exemplo resolução por QUERY](/.images/exemplo_query.png)
+
+**Opção 2:** `=IFERROR(VLOOKUP($A2;qnt_novos_usuarios_mes!$A$1:$Z$25;ROWS(qnt_novos_usuarios_mes!$A$1:$A2)+COLUMNS(qnt_novos_usuarios_mes!$C$1:D2)-1;0);"")`
+
+![Exemplo resolução por PROCV](/.images/exemplo_procv.png)
+
+## 6. Calcular porcentagens e formatar
+De qualquer forma, você conseguiu chegar a uma tabela que mostra quantos clientes estavam pagando em cada mês para cada coorte (ou data de inscrição).
+
+Estamos agora prestes a extrair informações valiosas para compartilhá-las com seu chefe e a CEO para tomar decisões comerciais. Precisamos apenas replicar a mesma tabela (pode ser mais abaixo ou em outra aba), mas agora mostrando a porcentagem de acordo com o total de clientes inscritos para cada célula.
+
+Para calcular a porcentagem de clientes retidos no mês 1, chamamos o número de clientes retidos naquele mês que se encontra na planilha anterior e o dividimos pela célula do número de clientes (Novos clientes na coorte 1/2019).
+
+Para visualizar melhor a tabela e chegar mais rápido aos insights, inclua uma escala de cores. Selecione todo o intervalo de células com as porcentagens e vá para a opção Formatar -> Formatação condicional
+
+Escolha “Escala de Cores” e selecione as cores vermelha, verde e amarela, bem como as porcentagens 0, 50 e 100 como mostrado na imagem.
+
+![Imagem do resultado com escala de cor](/.images/escala_cores.png)
+
+### Análises
+- É comum ver uma tendência (seta vertical) mostrando que as coortes mais jovens (por exemplo, 3/2020 ou 4/2020) estão melhores do que as coortes mais antigas (1/2019). Quanto mais jovem uma coorte, mais se espera que os clientes sejam retidos, porque isso significaria que o produto vem melhorando com o tempo e, portanto, os clientes estão voltando a consumi-lo. Este caso de negócio não está de acordo com isso.
+- É normal notar que a porcentagem de clientes retidos está diminuindo com o passar do tempo (ver seta horizontal). A coorte 1/2019 começou com 100% e após 12 meses sua retenção é de 72,73%. A diminuição é inevitável, mas é desejável que as porcentagens ao longo da linha horizontal diminuam o mais lentamente possível.
+- Exemplo de leitura das células: 69.23% de todos os clientes adquiridos em 11/2019 continuam pagando a assinatura 14 meses depois do registro. Você pode notar qual a coorte com maior retenção de clientes? Qual teve a pior retenção? A que isso pode ser devido?
+- Vejamos os totais: 5 meses depois do registro, a média de clientes retidos era 88,58%
+- O ponto mais crítico foi no mês 20 e 21, com 51%. 
+
+# Resultado final
+![Resultado Final](/.images/resultado_final1.png)
+
+![Resultado Final](/.images/resultado_final2.png)
+
+![Resultado Final](/.images/resultado_final3.png)
+
+![Resultado Final](/.images/resultado_final4.png)
 
 # Objetivos da aprendizagem
 - **Organizar dados em planilhas**: conhecer os diferentes tipos de dados que uma célula aceita e conseguir formatar moedas, datas, números para melhor visualizar as informações. Além disso, usar filtros para organizar os dados e poder ordenar as colunas do maior para o menor (ou vice-versa) de acordo com o tipo de dados.
@@ -60,5 +158,4 @@ Seu objetivo é ajudar a CEO da startup a determinar se o investimento recebido 
 - [Instruções](https://www.kaggle.com/datasets/datacertlaboratoria/projeto-2-reteno-de-startup-tecnolgica)
 - [Guia passo a passo](https://www.kaggle.com/code/datacertlaboratoria/guia-de-resolu-o-projeto-2)
 
-## Trilha de Aprendizagem (cursos)
 
