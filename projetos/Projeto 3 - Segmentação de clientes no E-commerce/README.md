@@ -5,7 +5,7 @@ Esse foi o terceiro projeto da Certificação de Análise de Dados da IBM/Labora
 - Cursos importantes para conclusão do projeto: [Google Data Studio: o Curso Completo](https://ude.my/UC-5a183d3a-901e-475f-bb91-cbe058caf782) e [Estatística para Ciência de Dados e Machine Learning](https://www.udemy.com/course/estatistica-para-ciencia-de-dados-machine-learning/)
 
 ## Briefing
-Neste projeto, você realizará uma análise descritiva que mostrará à CEO de uma empresa de varejo o quão bem ou mal as vendas estão indo na empresa, medirá o engajamento do cliente com base em uma análise de coorte e realizará uma segmentação de clientes aplicando a metodologia RFM, para que o negócio possa focar seus esforços e adotar estratégias diferenciadas para cada segmento. Além disso, você aprenderá a importância da limpeza e do tratamento dos dados antes de realizar qualquer análise.
+>Neste projeto, você realizará uma análise descritiva que mostrará à CEO de uma empresa de varejo o quão bem ou mal as vendas estão indo na empresa, medirá o engajamento do cliente com base em uma análise de coorte e realizará uma segmentação de clientes aplicando a metodologia RFM, para que o negócio possa focar seus esforços e adotar estratégias diferenciadas para cada segmento. Além disso, você aprenderá a importância da limpeza e do tratamento dos dados antes de realizar qualquer análise.
 
 **Entregável**:
 - Fonte de dados pré-processada (dados limpos)
