@@ -5,7 +5,7 @@ Esse foi o segundo projeto da Certificação de Análise de Dados da IBM/Laborat
 - Cursos importantes para conclusão do projeto: [Google Sheets - The Comprehensive Masterclass](https://www.udemy.com/certificate/UC-4c35090b-4cff-4731-9a93-1d3e29898c4d/)
 
 ## Briefing
-Neste projeto, você realizará uma análise com base em um conjunto de dados sobre os clientes que usam um software de gestão de despesas na nuvem. Para responder às perguntas de negócios que surgirem, você precisará entender a estrutura dos dados, analisá-los e entender as métricas de negócios que permitirão comunicar suas descobertas e apoiar a tomada de decisões.
+>Neste projeto, você realizará uma análise com base em um conjunto de dados sobre os clientes que usam um software de gestão de despesas na nuvem. Para responder às perguntas de negócios que surgirem, você precisará entender a estrutura dos dados, analisá-los e entender as métricas de negócios que permitirão comunicar suas descobertas e apoiar a tomada de decisões.
 
 Para conclusão do projeto, as seguintes perguntas devem ser respondidas:
 - Porcentagem de retenção de clientes por mês
