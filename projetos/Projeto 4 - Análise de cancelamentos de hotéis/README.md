@@ -1,4 +1,4 @@
-# Projeto 4: Análise de cancelamentos de hotéis
+# Análise de cancelamentos de hotéis
 # Introdução
 Esse foi o quarto projeto da Certificação de Análise de Dados da IBM/Laboratoria.
 
