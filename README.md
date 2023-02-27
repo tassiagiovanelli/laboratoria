@@ -10,3 +10,10 @@ O programa teve duração de 16 semanas, com 15h semanais (8h síncronas e 7h as
 
 Cada um dos projetos realizados pode ser encontrado [aqui](https://github.com/tassiagiovanelli/laboratoria/tree/main/projetos) :) 
 
+### **Skills/Tools**: 
+- Data analysis
+- SQL (Google BigQuery) 
+- ETL
+- Statistics
+- Looker (Google DataStudio) 
+- Google Sheets 
